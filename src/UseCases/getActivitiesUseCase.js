@@ -1,6 +1,7 @@
 import { formatResponse } from "../Helpers";
 import getActivitiesRequest from "../Requests/getActivitiesRequest";
 import resetActivitiesRequest from "../Requests/resetActivitiesRequest";
+import store from "../Store";
 import { 
     getActivities,
     getActivitiesFailure,
