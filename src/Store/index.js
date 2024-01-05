@@ -23,11 +23,15 @@ export const CALL_DETAILS = 'CALL_DETAILS';
 export const CALL_DETAILS_SUCCESS = 'CALL_DETAILS_SUCCESS';
 export const CALL_DETAILS_FAILURE = 'CALL_DETAILS_FAILURE';
 
+export const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';
+
 const initialState = {
+    activeTab: 0,
     loading: false,
     error: false,
     activities: {}, // <activity_id, activity>
-    groupedActivities: [] // [{ date: string, items: [[activityId, count], ...] }, ...]
+    groupedActivities: [], // Graph data in format - [{ date: string, items: [[activityId, count], ...] }, ...]
+    archivedActivities: [] // Graph data in format - [{ date: string, items: [[activityId, count], ...] }, ...]
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -44,7 +48,8 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
                 error: false,
                 activities: action.payload.activities,
-                groupedActivities: action.payload.groupedActivities
+                groupedActivities: action.payload.groupedActivities,
+                archivedActivities: action.payload.archivedActivities
             };
         case GET_ACTIVITIES_FAILURE:
             return {
@@ -52,6 +57,11 @@ const rootReducer = (state = initialState, action) => {
                 loading: false,
                 error: true,
             };
+        case SET_ACTIVE_TAB:
+            return {
+                ...state,
+                activeTab: action.payload
+            }
         default:
             return state;
     }

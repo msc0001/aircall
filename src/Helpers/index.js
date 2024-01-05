@@ -18,9 +18,27 @@ export const formatDate = (dateString) => {
     return { year, month, m, date, h, hh, t, mm };
 }
 
+export const formatGroupedData = (groupedActivities) => Object.keys(groupedActivities)
+.sort((a, b) => {
+    const aData = groupedActivities[a].meta;
+    const bData = groupedActivities[b].meta;
+
+    if (aData.year < bData.year) {
+        return 1;
+    }
+    if (aData.m < bData.m) {
+        return 1;
+    }
+    if (aData.date < bData.date) {
+        return 1;
+    }
+    return -1;
+})
+.map(key => groupedActivities[key])
+
 export const formatResponse = (activities) => {
     const activitiesDict = {};
-    const archivedActivities = [];
+    const archivedActivities = {};
     const groupedActivities = {};
 
     activities.forEach(activity => {
@@ -37,39 +55,28 @@ export const formatResponse = (activities) => {
 
       activitiesDict[id] = updatedActivity;
 
+      const key = `${year}-${m}-${date}`;
+
+      let result =  groupedActivities;
+
       if (isArchived) {
-        archivedActivities.push(id);
-      } else if (from !== undefined) {
-              
-        const key = `${year}-${m}-${date}`;
-        if (!groupedActivities[key]) {
-            groupedActivities[key] = [];
+        result = archivedActivities
+      }
+
+      if (from !== undefined) {
+        if (!result[key]) {
+            result[key] = [];
             // this will be used to sort the groups in an lastest first order
-            groupedActivities[key].meta = { year, m, month, date, key };
+            result[key].meta = { year, m, month, date, key };
         }
         
-        groupedActivities[key].push(id);
+        result[key].push(id);
     }
     });
 
     return {
         activities: activitiesDict,
-        groupedActivities: Object.keys(groupedActivities)
-            .sort((a, b) => {
-                const aData = groupedActivities[a].meta;
-                const bData = groupedActivities[b].meta;
-
-                if (aData.year < bData.year) {
-                    return 1;
-                }
-                if (aData.m < bData.m) {
-                    return 1;
-                }
-                if (aData.date < bData.date) {
-                    return 1;
-                }
-                return -1;
-            })
-            .map(key => groupedActivities[key])
+        groupedActivities: formatGroupedData(groupedActivities),
+        archivedActivities: formatGroupedData(archivedActivities)
     }
 }

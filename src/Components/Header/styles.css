@@ -3,7 +3,6 @@ header {
     padding-top: 6px;
     background-color: var(--ms-light-bg-color);
     text-align: center;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     flex: 0;
     width: 100%;
     display: flex;
@@ -13,7 +12,8 @@ header {
 
 header .logo {
     max-width: 30%;
-    padding: 3px 16px 6px;
+    z-index: 3;
+    padding: 6px 16px 6px;
     border-bottom: 2px solid var(--ms-border-color);
 }
 
@@ -25,6 +25,7 @@ header nav ul {
     border-top: 2px solid var(--ms-border-color);
     border-top-left-radius: 35px;
     position: relative;
+    background-color: var(--ms-bg-color);
 }
 
 header nav ul li:first-child {
@@ -33,27 +34,47 @@ header nav ul li:first-child {
 
 header nav ul::before {
     content: '';
-    height: 27px;
-    width: 38px;
+    height: 29px;
+    width: 49px;
     position: absolute;
-    z-index: 999;
-    border-bottom-right-radius: 100%;
-    left: -40px;
+    z-index: 2;
+    border-bottom-right-radius: 48px;
+    left: -50px;
     top: 20px;
     border: 2px solid #000;
+    background-color: var(--ms-light-bg-color);
     border-color: transparent var(--ms-border-color) var(--ms-border-color) transparent;
+}
+
+header nav ul::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -35px;
+    z-index: 1;
+    background-color: var(--ms-bg-color);
+    width: 38px;
+    height: 30px;
 }
 
 header nav ul li {
     list-style: none;
-    padding: 16px;
-    border-bottom: 2px solid var(--ms-bg-color);
+    padding: 18px 16px 16px;
+    border-bottom: 4px solid var(--ms-bg-color);
     position: relative;
     cursor: pointer;
 }
 
+header nav ul .btn:hover {
+    border-bottom-color: transparent;
+}
+
 header nav ul li:hover {
     border-bottom-color: var(--ms-border-color);
+}
+
+header nav ul li.active, header nav ul.active:hover {
+    border-bottom-color: var(--ms-red-color);
 }
 
 header nav ul li::before {

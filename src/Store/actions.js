@@ -9,7 +9,8 @@ import store, {
     GET_ACTIVITIES_SUCCESS,
     RESET_ACTIVITY,
     RESET_ACTIVITY_FAILURE,
-    RESET_ACTIVITY_SUCCESS
+    RESET_ACTIVITY_SUCCESS,
+    SET_ACTIVE_TAB
 } from ".";
 
 const dispatch = (action) => store.dispatch(action);
@@ -72,4 +73,9 @@ export const getCallDetailSuccess = payload => dispatch({
 export const getCallDetailFailure = payload => dispatch({
     type: CALL_DETAILS_FAILURE,
     payload
+})
+
+export const setActiveTab = (tabId) => dispatch({
+    type: SET_ACTIVE_TAB,
+    payload: tabId
 })

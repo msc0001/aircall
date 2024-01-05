@@ -25,5 +25,5 @@
 #app .container-view {
   flex: 1;
   overflow: auto;
-  padding-bottom: 40px;
+  padding-bottom: 80px;
 }

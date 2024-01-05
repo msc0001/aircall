@@ -2,5 +2,6 @@
     flex: 0;
     padding: 20px;
     text-align: center;
+    background-color: var(--ms-light-bg-color);
     border-top: 1px solid var(--ms-light-text-color);
 }
