@@ -1,21 +1,32 @@
-import React from 'react'
+import React, { Component } from 'react'
+import './styles.css';
 import CallGroup from '../../Components/CallGroup';
 import ActionButton from '../../Components/ActionButton';
-import './styles.css';
-import ArchiveIcon from '../../Common/Icons/Archive';
+import ArchiveIcon from '../../Common/Components/Icons/Archive';
+import getCallsRequest from '../../Requests/getCalls';
 
-function Inbox() {
-    return (
-        <section className='inbox-container'>
-            <ActionButton className="archive-btn">
-                <ArchiveIcon />
-                <span className='archive-btn-text'>Archive all calls</span>
-            </ActionButton>
-            <CallGroup />
-            <CallGroup />
-            <CallGroup />
-        </section>
-    )
+class Inbox extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        getCallsRequest();
+    }
+
+    render() {
+        return (
+            <section className='inbox-container'>
+                <ActionButton className="archive-btn">
+                    <ArchiveIcon />
+                    <span className='archive-btn-text'>Archive all calls</span>
+                </ActionButton>
+                <CallGroup />
+                <CallGroup />
+                <CallGroup />
+            </section>
+        );
+    }
 }
 
 export default Inbox;

@@ -6,9 +6,9 @@ import './styles.css';
 function CallGroup() {
     return (
         <div className='call-group'>
-            <caption className='call-group-caption light-text'>
+            <span className='call-group-caption light-text'>
                 {'Jan 4, 2024'}
-            </caption>
+            </span>
             <Call />
             <Call />
             <Call />

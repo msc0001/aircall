@@ -1,7 +1,7 @@
 import React from 'react';
 import ActionButton from '../ActionButton';
 import './styles.css';
-import IncomingCall from '../../Common/Icons/IncomingCall';
+import IncomingCall from '../../Common/Components/Icons/IncomingCall';
 
 function Call() {
     return (

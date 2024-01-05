@@ -1,0 +1,1 @@
+export const API_ENDPOINT = 'https://cerulean-marlin-wig.cyclic.app';

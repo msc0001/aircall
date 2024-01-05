@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../../Common/Button'
+import Button from '../../Common/Components/Button'
 import './styles.css';
 
 export default function ActionButton (props) {
