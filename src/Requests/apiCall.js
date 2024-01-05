@@ -15,7 +15,8 @@ export default async function apiCall(
 
     try {
         const response = await fetch(
-            { method, url: `${API_ENDPOINT}${url}${params}`, headers: {}, body }
+            `${API_ENDPOINT}${url}${params}`,
+            { method, headers: {}, body }
         );
 
         const result = await response.json();

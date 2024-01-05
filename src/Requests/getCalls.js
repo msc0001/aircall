@@ -1,8 +1,8 @@
-// import apiCall from "./apiCall";
+import apiCall from "./apiCall";
 
-export default function getCallsRequest() {
+export default async function getCallsRequest() {
     try {
-        const r = {} // await apiCall('/activities');
+        const r = await apiCall('/activities');
         console.log(r);
         return r;
     } catch (ex) {
