@@ -6,6 +6,10 @@
     padding-top: 12px;
 }
 
+.inbox-container .loader-wrapper {
+    margin: 0 16px 16px;
+}
+
 .inbox-container .archive-btn {
     margin: 16px;
     padding: 16px;

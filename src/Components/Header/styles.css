@@ -1,7 +1,7 @@
 header {
-    height: 40px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding-top: 6px;
+    background-color: var(--ms-light-bg-color);
     text-align: center;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     flex: 0;
@@ -12,8 +12,9 @@ header {
 }
 
 header .logo {
-    max-width: 35%;
-    padding: 0 16px;
+    max-width: 30%;
+    padding: 3px 16px 6px;
+    border-bottom: 2px solid var(--ms-border-color);
 }
 
 header nav ul {
@@ -21,13 +22,38 @@ header nav ul {
     align-items: center;
     justify-items: end;
     flex: 1;
+    border-top: 2px solid var(--ms-border-color);
+    border-top-left-radius: 35px;
+    position: relative;
+}
+
+header nav ul li:first-child {
+    margin-left: 10px;
+}
+
+header nav ul::before {
+    content: '';
+    height: 27px;
+    width: 38px;
+    position: absolute;
+    z-index: 999;
+    border-bottom-right-radius: 100%;
+    left: -40px;
+    top: 20px;
+    border: 2px solid #000;
+    border-color: transparent var(--ms-border-color) var(--ms-border-color) transparent;
 }
 
 header nav ul li {
     list-style: none;
     padding: 16px;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid var(--ms-bg-color);
     position: relative;
+    cursor: pointer;
+}
+
+header nav ul li:hover {
+    border-bottom-color: var(--ms-border-color);
 }
 
 header nav ul li::before {
@@ -43,16 +69,4 @@ header nav ul li::before {
 
 header nav ul li:first-child::before {
     display: none;
-}
-
-header .logo {
-    border-right: 1px solid var(--ms-border-color);
-    border-bottom-right-radius: 15px;
-}
-
-header nav {
-    border-left: 1px solid var(--ms-border-color);
-    border-top: 1px solid var(--ms-border-color);
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: -15px;
 }

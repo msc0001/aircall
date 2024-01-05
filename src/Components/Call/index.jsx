@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import ActionButton from '../ActionButton';
 import './styles.css';
 import IncomingCall from '../../Common/Components/Icons/IncomingCall';
@@ -25,7 +26,12 @@ function CallIcon({ type }) {
     }
 }
 
-function Call({ type = 'missed' }) {
+const formatTime = ({ hh, mm }) => `${hh<10 ? '0' : ''}${hh}:${mm<10 ? '0' : ''}${mm}`;
+
+function Call({ id }) {
+    
+    const { call_type: type, formattedDate, to, from, counts } = useSelector(state => (state.activities[id]));
+
     return (
         <ActionButton className="call-flex-box">
             <div className='call-icon'>
@@ -33,14 +39,14 @@ function Call({ type = 'missed' }) {
             </div>
             <div className='call-content'>
                 <h3 className='call-name dark-text bold'>
-                    <span className='call-title'>Name Name Name Name Name Name Name Name Name </span>
-                    <span className='call-counts'>8</span>
+                    <span className='call-title'>{from}</span>
+                    {counts > 1 ? <span className='call-counts'>{counts}</span> : null}
                 </h3>
-                <h5 className='call-desc light-text'>tried to call in xaviortried to call in xaviortried to call in xaviortried to call in xaviortried to call in xaviortried to call in xaviortried to call in xavior</h5>
+                <h5 className='call-desc light-text'>{`tried to call on ${to}`}</h5>
             </div>
             <div className='call-time'>
-                <span className='call-time-value'>12:30</span>
-                <span className='call-format'>PM</span>
+                <span className='call-time-value'>{formatTime(formattedDate)}</span>
+                <span className='call-format'>{formattedDate.t}</span>
             </div>
         </ActionButton>
     )

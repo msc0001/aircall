@@ -16,10 +16,21 @@ export default async function apiCall(
     try {
         const response = await fetch(
             `${API_ENDPOINT}${url}${params}`,
-            { method, headers: {}, body }
+            {
+                method,
+                body: body ? JSON.stringify(body) : body,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
         );
 
-        const result = await response.json();
+        try {
+            const result = await response.json();
+            return result;
+        } catch (ex) {
+            return true;
+        }
 
         return result;
     } catch (ex) {

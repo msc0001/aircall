@@ -3,15 +3,17 @@ import React from 'react'
 import Call from '../Call'
 import './styles.css';
 
-function CallGroup() {
+function CallGroup({
+    data
+}) {
     return (
         <div className='call-group'>
             <span className='call-group-caption light-text'>
-                {'Jan 4, 2024'}
+                {`${data.meta.month} ${data.meta.date}, ${data.meta.year}`}
             </span>
-            <Call />
-            <Call />
-            <Call />
+            {data.map(activityId => (
+                <Call key={activityId} id={activityId} />
+            ))}
         </div>
     );
 }
