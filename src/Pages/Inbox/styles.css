@@ -1,0 +1,20 @@
+.inbox-container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: 100vh;
+    padding-top: 12px;
+}
+
+.inbox-container .archive-btn {
+    margin: 16px;
+    padding: 16px;
+}
+
+.inbox-container .archive-btn .archive-btn-text {
+    margin-left: 10px;
+}
+
+.inbox-container .archive-btn svg path {
+    fill: var(--ms-light-text-color);
+}

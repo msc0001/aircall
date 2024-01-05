@@ -14,12 +14,16 @@
   height: 666px;
   z-index: 100;
 
-  background: white;
+  background: var(--ms-bg-color);
   border-radius: 3px;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .9);
+  border-bottom: 1px solid rgba(0, 0, 0, .9);
+
+  display: flex;
+  flex-direction: column;
 }
 
 #app .container-view {
-  padding: 20px;
+  flex: 1;
+  overflow: auto;
+  padding-bottom: 40px;
 }
-

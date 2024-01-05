@@ -1,0 +1,82 @@
+.call-flex-box {
+    display: flex;
+    align-items: center;
+    padding-right: 0;
+}
+
+.call-flex-box .call-icon, .call-flex-box .call-time {
+    flex: 0;
+} 
+
+.call-flex-box .call-content {
+    flex: 1;
+    padding: 0px 8px;
+    overflow: hidden;
+}
+.call-flex-box .call-content .call-name {
+    display: flex;
+    align-items: center;
+}
+
+.call-flex-box .call-icon {
+    padding: 8px;
+}
+
+.call-flex-box .call-icon  svg path {
+    fill: var(--ms-light-text-color);
+}
+.call-flex-box .call-title {
+    font-weight: 600;
+}
+.call-flex-box .call-counts {
+    background-color: var(--ms-red-color);
+    font-size: 10px;
+    height: 14px;
+    width: 14px;
+    line-height: 14px;
+    border-radius: 100%;
+    display: inline-block;
+    padding: 2px;
+    color: var(--ms-x-light-text-color);
+    font-weight: 600;
+    text-align: center;
+    margin-left: 8px;
+}
+.call-flex-box .call-desc {
+    margin: 0;
+    margin-top: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.call-flex-box .call-time {
+    color: var(--ms-light-text-color);
+    font-weight: 600;
+    position: relative;
+}
+
+.call-flex-box .call-time::before {
+    content: ".....";
+    height: 22px;
+    width: 2px;
+    overflow: hidden;
+    word-wrap: break-word;
+    position: absolute;
+    top: 50%;
+    line-height: 7px;
+    transform: translate(0, -50%);
+}
+
+.call-flex-box .call-time .call-time-value {
+    padding-left: 12px;
+}
+
+.call-flex-box .call-time .call-format {
+    margin-left: 6px;
+    border: 1px solid var(--ms-border-color);
+    border-right: 0;
+    padding: 4px;
+    border-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}

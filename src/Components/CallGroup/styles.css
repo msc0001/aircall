@@ -1,0 +1,40 @@
+.call-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.call-group > .action-btn {
+    margin: 0 16px 16px;
+}
+
+.call-group-caption {
+    font-size: 10px;
+    margin-bottom: 16px;
+    width: 100%;
+    display: flex;
+    padding: 4px;
+    position: relative;
+    font-weight: 600;
+    flex: 0;
+}
+
+.call-group-caption::before,
+.call-group-caption::after {
+    content: "................................";
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    letter-spacing: 5px;
+    margin-top: -3px;
+}
+
+.call-group-caption::before {
+    margin-right: 10px;
+}
+
+.call-group-caption::after {
+    margin-left: 10px;
+}
+
+
