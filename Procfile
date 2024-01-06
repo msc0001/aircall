@@ -1,1 +1,1 @@
-web: npm start
+web: cd python3 -m http.server
