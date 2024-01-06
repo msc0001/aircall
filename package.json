@@ -12,7 +12,7 @@
     "node" : "16.20.2"
   },
   "scripts": {
-    "heroku-prebuild": "npm install",
+    "heroku-prebuild": "npm install --dev",
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production"
   },
