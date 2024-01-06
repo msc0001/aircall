@@ -12,6 +12,8 @@
     "node" : "16.20.2"
   },
   "scripts": {
+    "heroku-prebuild": "npm install",
+    "heroku-postbuild": "npm run build",
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production"
   },
