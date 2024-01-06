@@ -50,7 +50,7 @@ export default function PageContainer({ groupedData, isArchived }) {
         return <>
             <ActionButton className="archive-btn" onClick={archiveAllCalls}>
                 <ArchiveIcon />
-                <span className='archive-btn-text'>Archive all calls</span>
+                <span className='archive-btn-text'>{isArchived ? 'Unarchive' : 'Archive'} all calls</span>
             </ActionButton>
             {groupedData?.map(groupedActivity => (
                 <CallGroup key={groupedActivity.meta.key} data={groupedActivity} />

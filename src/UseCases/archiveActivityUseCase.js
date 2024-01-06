@@ -5,12 +5,7 @@ import getActivitiesUseCase from "./getActivitiesUseCase";
 
 export async function archiveActivityUseCase(callId, isArchived) {
     try {
-        const { archiving, activities } = store.getState();
-
-        if (archiving[callId] && archiving[callId].loading) {
-            return;
-        }
-
+        console.log(callId);
         archiveActivity();
         await archiveActivityRequest(callId, { is_archived: isArchived });
         archiveActivitySuccess({
@@ -39,9 +34,10 @@ export async function archiveAllActivitiesUseCase(currentStatus) { // <currentSt
                 ids = [...ids, ...ga];
             });
         }
-
-        for (let batch=0; batch < ids.length / 10; batch ++) {
-            await Promise.all(ids.slice(batch, batch + 10).map(callId => archiveActivityUseCase(callId, !currentStatus)));
+        const size = 10;
+        for (let batch=0; batch < Math.ceil(ids.length / size); batch++) {
+            const batchedIds = ids.slice(size * batch, (batch + 1) * size);
+            await Promise.all(batchedIds.map(callId => archiveActivityUseCase(callId, !currentStatus)));
         }
 
         // this can be improved using a single patch api with multiple ids
