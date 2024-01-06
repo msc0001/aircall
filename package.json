@@ -7,10 +7,6 @@
   "author": "Mangal Singh",
   "license": "",
   "private": false,
-  "engines": {
-    "npm" : "8.19.4",
-    "node" : "16.20.2"
-  },
   "scripts": {
     "heroku-prebuild": "npm install",
     "heroku-postbuild": "npm run build",
