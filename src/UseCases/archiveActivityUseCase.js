@@ -5,7 +5,7 @@ import getActivitiesUseCase from "./getActivitiesUseCase";
 
 export async function archiveActivityUseCase(callId, isArchived) {
     try {
-        const { archiving } = store.getState();
+        const { archiving, activities } = store.getState();
 
         if (archiving[callId] && archiving[callId].loading) {
             return;

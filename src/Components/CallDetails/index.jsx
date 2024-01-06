@@ -8,16 +8,30 @@ import { archiveActivityUseCase } from '../../UseCases/archiveActivityUseCase';
 
 function CallDetails() {
     const activeCallDetailsId = useSelector(state => state.activeCallDetailsId);
+    const activity = useSelector(state => state.activeCallDetailsId
+        ? state.activities[state.activeCallDetailsId]
+        : null);
 
     const archiveActiveCallId = useCallback((e) => {
         e.preventDefault();
         e.stopPropagation();
-        archiveActivityUseCase(activeCallDetailsId); 
-    }, [activeCallDetailsId])
+
+        const activity = activity?.[activeCallDetailsId || ''];
+        if (!activity) {
+            return;
+        }
+
+        archiveActivityUseCase(
+            activeCallDetailsId,
+            !activity.is_archived
+        ); 
+    }, [activeCallDetailsId, activity])
 
     if (!activeCallDetailsId) {
         return null;
     }
+
+    const { is_archived: isArchived } = activity;
 
     return (
         <div 
@@ -29,7 +43,7 @@ function CallDetails() {
                     <Call id={activeCallDetailsId} disabled />
                     <div className='btn-group'>
                         <Button onClick={archiveActiveCallId}>
-                            Archive
+                            {isArchived ? 'Unarchive' : 'Archive' }
                         </Button>
                     </div>
 
