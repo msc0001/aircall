@@ -1,0 +1,33 @@
+.call-details-overlay {
+    position: absolute;
+    top: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 5;
+}
+
+.call-details-overlay.active {
+    top: 0;
+}
+
+.call-details-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    animation: ease 1s;
+}
+
+.call-details-container {
+    position: absolute;
+    height: 60%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top-right-radius: 35px;
+    border-top-left-radius: 35px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.301);
+    padding: 30px;
+    background-color: var(--ms-light-bg-color);
+}

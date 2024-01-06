@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import ActionButton from '../ActionButton';
 import './styles.css';
@@ -6,6 +6,7 @@ import IncomingCall from '../../Common/Components/Icons/IncomingCall';
 import MissedCallIcon from '../../Common/Components/Icons/MissedCallIcon';
 import OutgoingCallIcon from '../../Common/Components/Icons/OutgoingCallIcon';
 import DialedCallIcon from '../../Common/Components/Icons/DialedCallIcon';
+import { showCallDetails } from '../../Store/actions';
 
 const CALL_TYPES  = {
     MISSED: 'missed',
@@ -28,12 +29,15 @@ function CallIcon({ type }) {
 
 const formatTime = ({ hh, mm }) => `${hh<10 ? '0' : ''}${hh}:${mm<10 ? '0' : ''}${mm}`;
 
-function Call({ id }) {
-    
-    const { call_type: type, formattedDate, to, from, counts } = useSelector(state => (state.activities[id]));
+function Call({ id, disabled }) {
+    const { call_type: type, formattedDate, to, from, counts, is_archived: isArchived } = useSelector(state => (state.activities[id]));
+
+    const openDetails = useCallback(() => {
+        showCallDetails(id);
+    }, [id]);
 
     return (
-        <ActionButton className="call-flex-box">
+        <ActionButton className="call-flex-box" onClick={openDetails} disabled={disabled}>
             <div className='call-icon'>
                 <CallIcon type={type} />
             </div>

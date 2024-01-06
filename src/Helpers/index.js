@@ -80,3 +80,39 @@ export const formatResponse = (activities) => {
         archivedActivities: formatGroupedData(archivedActivities)
     }
 }
+
+export const removeFromFirstAndAddToSecond = (
+    callId,
+    activityList1,
+    activityList2,
+    activities
+) => {
+    
+    const group1 = Object.keys(activityList1);
+    const activity = activities[callId];
+
+    for (let i=0; i<group1.length; i++) {
+        const callIds = activityList1[group1[i]];
+        for (let j=0; j<callIds.length; j++) {
+            if (callIds[j] == callId) {
+                activityList1[group1[i]] = callIds.filter(id => id != callId);
+                break;
+            }
+        }
+    }
+
+    const { year, month, m, date } = activity.formattedDate;
+
+    const key = `${year}-${m}-${date}`;
+
+    if (!activityList2[key]) {
+        activityList2[key] = [];
+        activityList2[key].meta = { year, m, month, date, key }
+    }
+
+    activityList2[key].push(callId);
+
+    activityList2[key].sort((id1, id2) => 
+        new Date(activities[id1].created_at) > new Date(activities[id2].created_at) ? -1 : 1
+    );
+}

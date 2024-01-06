@@ -7,6 +7,7 @@ import Inbox from './Pages/Inbox/index.jsx';
 import Footer from './Components/Footer/index.jsx';
 import store from './Store/index.js';
 import Archived from './Pages/Archived/index.jsx';
+import CallDetails from './Components/CallDetails/index.jsx';
 
 const Content = () => {
   const activeTab = useSelector(state => state.activeTab);
@@ -25,6 +26,7 @@ const App = () => {
         <Header/>
         <main className="container-view">
           <Content />
+          <CallDetails />
         </main>
         <Footer />
       </div>

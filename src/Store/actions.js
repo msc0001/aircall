@@ -7,10 +7,12 @@ import store, {
     GET_ACTIVITIES,
     GET_ACTIVITIES_FAILURE,
     GET_ACTIVITIES_SUCCESS,
+    HIDE_CALL_DETAILS,
     RESET_ACTIVITY,
     RESET_ACTIVITY_FAILURE,
     RESET_ACTIVITY_SUCCESS,
-    SET_ACTIVE_TAB
+    SET_ACTIVE_TAB,
+    SHOW_CALL_DETAILS
 } from ".";
 
 const dispatch = (action) => store.dispatch(action);
@@ -78,4 +80,13 @@ export const getCallDetailFailure = payload => dispatch({
 export const setActiveTab = (tabId) => dispatch({
     type: SET_ACTIVE_TAB,
     payload: tabId
+})
+
+export const showCallDetails = (callId) => dispatch({
+    type: SHOW_CALL_DETAILS,
+    payload: callId
+})
+
+export const hideCallDetails = () => dispatch({
+    type: HIDE_CALL_DETAILS,
 })

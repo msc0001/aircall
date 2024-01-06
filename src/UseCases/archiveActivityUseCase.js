@@ -1,18 +1,25 @@
 import archiveActivityRequest from "../Requests/archiveActivityRequest";
 import store from "../Store";
-import { archiveActivity, archiveActivityFailure, archiveActivitySuccess } from "../Store/actions";
+import { archiveActivity, archiveActivityFailure, archiveActivitySuccess, hideCallDetails } from "../Store/actions";
 import getActivitiesUseCase from "./getActivitiesUseCase";
 
 export async function archiveActivityUseCase(callId, isArchived) {
     try {
+        const { archiving } = store.getState();
+
+        if (archiving[callId] && archiving[callId].loading) {
+            return;
+        }
+
         archiveActivity();
         await archiveActivityRequest(callId, { is_archived: isArchived });
         archiveActivitySuccess({
             callId,
             isArchived
         });
+        hideCallDetails();
     } catch (error) {
-        archiveActivityFailure(callId);
+        archiveActivityFailure({ callId, isArchived });
     }
 }
 
@@ -24,7 +31,9 @@ export async function archiveAllActivitiesUseCase(currentStatus) { // <currentSt
         let ids = [];
 
         if (currentStatus) {
-            ids = archivedActivities;
+            archivedActivities.forEach(ga => {
+                ids = [...ids, ...ga];
+            });
         } else {
             groupedActivities.forEach(ga => {
                 ids = [...ids, ...ga];
